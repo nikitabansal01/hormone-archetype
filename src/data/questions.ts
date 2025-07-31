@@ -1,325 +1,399 @@
 export interface Question {
-  id: number;
+  id: string;
   text: string;
   options: {
     letter: string;
     text: string;
+    nextQuestion?: string;
     archetypes: string[];
   }[];
+  path?: string;
 }
 
 export const questions: Question[] = [
+  // Main branching question
   {
-    id: 1,
-    text: "How have your periods been over the last 6 months? (Choose the option that best matches your recent pattern.)",
+    id: "main",
+    text: "🌸 What feels most off right now? (Choose the one that feels most true today)",
     options: [
       {
         letter: "A",
-        text: "Heavy, long, or irregular",
-        archetypes: ["queen", "chairwoman"]
+        text: "😠 Mood swings or heavy periods",
+        nextQuestion: "estrogen_q1",
+        archetypes: []
       },
       {
         letter: "B",
-        text: "Light or absent",
-        archetypes: ["nun", "wisewoman"]
+        text: "😰 Always stressed or anxious",
+        nextQuestion: "cortisol_q1",
+        archetypes: []
       },
       {
         letter: "C",
-        text: "Unpredictable — sometimes light, sometimes heavy",
+        text: "🐢 Tired, cold, or weight gain",
+        nextQuestion: "thyroid_q1",
+        archetypes: []
+      },
+      {
+        letter: "D",
+        text: "😶 Low sex drive or motivation",
+        nextQuestion: "testosterone_q1",
+        archetypes: []
+      },
+      {
+        letter: "E",
+        text: "😭 Overwhelmed or too emotional",
+        nextQuestion: "progesterone_q1",
+        archetypes: []
+      }
+    ]
+  },
+
+  // ESTROGEN PATH
+  {
+    id: "estrogen_q1",
+    path: "estrogen",
+    text: "🌺 What's your period like these days?",
+    options: [
+      {
+        letter: "A",
+        text: "🩸 Heavy or painful",
+        nextQuestion: "estrogen_q2",
+        archetypes: ["queen"]
+      },
+      {
+        letter: "B",
+        text: "😩 Bloated or emotional",
+        nextQuestion: "estrogen_q2",
         archetypes: ["mother"]
       },
       {
-        letter: "D",
-        text: "I no longer menstruate",
-        archetypes: ["wisewoman", "philosopher"]
-      },
-      {
-        letter: "E",
-        text: "No periods, but acne or facial/body hair",
-        archetypes: ["warrior"]
-      },
-      {
-        letter: "F",
-        text: "Regular, predictable cycles with few symptoms",
-        archetypes: ["balanced"]
-      }
-    ]
-  },
-  {
-    id: 2,
-    text: "How would you describe your sleep in the past 4 weeks?",
-    options: [
-      {
-        letter: "A",
-        text: "I struggle to fall asleep or wake up feeling anxious",
-        archetypes: ["queen", "workaholic"]
-      },
-      {
-        letter: "B",
-        text: "I sleep but never feel rested",
-        archetypes: ["saboteur", "underdog"]
-      },
-      {
         letter: "C",
-        text: "I'm wired at night, mind races",
-        archetypes: ["workaholic", "overachiever"]
-      },
-      {
-        letter: "D",
-        text: "I sleep deeply but still feel exhausted",
-        archetypes: ["saboteur"]
-      },
-      {
-        letter: "E",
-        text: "I sleep fine, but need caffeine to feel alert",
-        archetypes: ["nun", "underdog"]
-      },
-      {
-        letter: "F",
-        text: "I fall asleep easily and feel rested most days",
-        archetypes: ["balanced"]
-      }
-    ]
-  },
-  {
-    id: 3,
-    text: "How do your moods usually feel before or during your period (last 3 cycles)?",
-    options: [
-      {
-        letter: "A",
-        text: "I feel emotional, anxious, or cry easily",
-        archetypes: ["unbalanced-heroine"]
-      },
-      {
-        letter: "B",
-        text: "I feel foggy, irritable, or low energy",
-        archetypes: ["chairwoman", "mother"]
-      },
-      {
-        letter: "C",
-        text: "Mood swings and brain fog hit me hard",
-        archetypes: ["queen", "chairwoman"]
-      },
-      {
-        letter: "D",
-        text: "I feel mentally drained or burned out",
-        archetypes: ["workaholic", "saboteur"]
-      },
-      {
-        letter: "E",
-        text: "I'm mostly emotionally stable",
-        archetypes: ["philosopher"]
-      },
-      {
-        letter: "F",
-        text: "I feel normal with minimal mood changes",
-        archetypes: ["balanced"]
-      }
-    ]
-  },
-  {
-    id: 4,
-    text: "Which physical symptoms do you regularly notice? (Choose up to 2)",
-    options: [
-      {
-        letter: "A",
-        text: "Bloating, breast tenderness, puffiness",
-        archetypes: ["queen", "mother"]
-      },
-      {
-        letter: "B",
-        text: "Hot flashes, night sweats, or vaginal dryness",
-        archetypes: ["wisewoman"]
-      },
-      {
-        letter: "C",
-        text: "Chin/jaw acne, facial hair, scalp hair thinning",
-        archetypes: ["warrior"]
-      },
-      {
-        letter: "D",
-        text: "Cold hands/feet, constipation, weight gain",
-        archetypes: ["underdog"]
-      },
-      {
-        letter: "E",
-        text: "No noticeable symptoms",
-        archetypes: ["philosopher"]
-      }
-    ]
-  },
-  {
-    id: 5,
-    text: "How has your energy felt over the past month?",
-    options: [
-      {
-        letter: "A",
-        text: "I push through the day but crash later",
-        archetypes: ["chairwoman", "workaholic"]
-      },
-      {
-        letter: "B",
-        text: "I feel tired most of the time, even after sleep",
-        archetypes: ["saboteur", "underdog"]
-      },
-      {
-        letter: "C",
-        text: "I feel anxious or restless much of the day",
-        archetypes: ["workaholic", "overachiever"]
-      },
-      {
-        letter: "D",
-        text: "I feel unmotivated or low energy",
-        archetypes: ["nun"]
-      },
-      {
-        letter: "E",
-        text: "Some days I'm energized, others I'm drained",
-        archetypes: ["mother", "warrior"]
-      },
-      {
-        letter: "F",
-        text: "I feel consistently energized and focused",
-        archetypes: ["balanced"]
-      }
-    ]
-  },
-  {
-    id: 6,
-    text: "What foods have you craved most often in the last few weeks?",
-    options: [
-      {
-        letter: "A",
-        text: "Sweets like chocolate, pastries, or desserts",
-        archetypes: ["queen", "warrior", "saboteur"]
-      },
-      {
-        letter: "B",
-        text: "Salty snacks like chips, olives, or nuts",
-        archetypes: ["workaholic"]
-      },
-      {
-        letter: "C",
-        text: "Both sweet and salty",
+        text: "😖 Stress makes it worse",
+        nextQuestion: "estrogen_q2",
         archetypes: ["chairwoman"]
-      },
-      {
-        letter: "D",
-        text: "Bread, pasta, or coffee",
-        archetypes: ["underdog"]
-      },
-      {
-        letter: "E",
-        text: "I eat mostly for comfort, not strong cravings",
-        archetypes: ["unbalanced-heroine"]
       }
     ]
   },
   {
-    id: 7,
-    text: "What's your usual response after meals?",
+    id: "estrogen_q2",
+    path: "estrogen",
+    text: "🐍 How's your daily energy?",
     options: [
       {
         letter: "A",
-        text: "I feel bloated or very tired",
-        archetypes: ["queen", "warrior"]
+        text: "🐍 Easily irritated",
+        nextQuestion: "estrogen_q3",
+        archetypes: ["queen"]
       },
       {
         letter: "B",
-        text: "I crash or feel sleepy 1–2 hours later",
-        archetypes: ["saboteur", "underdog"]
-      },
-      {
-        letter: "C",
-        text: "I get hungry again quickly",
-        archetypes: ["workaholic"]
-      },
-      {
-        letter: "D",
-        text: "I rely on snacks or caffeine after meals",
-        archetypes: ["nun"]
-      },
-      {
-        letter: "E",
-        text: "I often lose my appetite when stressed",
-        archetypes: ["saboteur"]
-      },
-      {
-        letter: "F",
-        text: "I feel satisfied and stable after eating",
-        archetypes: ["balanced"]
-      }
-    ]
-  },
-  {
-    id: 8,
-    text: "How would you describe your libido over the past few months?",
-    options: [
-      {
-        letter: "A",
-        text: "Very low or nonexistent",
-        archetypes: ["nun", "wisewoman"]
-      },
-      {
-        letter: "B",
-        text: "Normal interest, but hard to reach orgasm",
-        archetypes: ["nun"]
-      },
-      {
-        letter: "C",
-        text: "Changes with mood, stress, or cycle",
+        text: "😵 Exhausted but pushing through",
+        nextQuestion: "estrogen_q3",
         archetypes: ["mother"]
       },
       {
-        letter: "D",
-        text: "Low when I feel tired or gain weight",
-        archetypes: ["underdog"]
-      },
-      {
-        letter: "E",
-        text: "Still strong, but not always connected",
-        archetypes: ["warrior", "overachiever"]
-      },
-      {
-        letter: "F",
-        text: "Libido feels healthy and consistent",
-        archetypes: ["balanced"]
+        letter: "C",
+        text: "💼 Busy and burned out",
+        nextQuestion: "estrogen_q3",
+        archetypes: ["chairwoman"]
       }
     ]
   },
   {
-    id: 9,
-    text: "What has your emotional state been like recently (last 4 weeks)?",
+    id: "estrogen_q3",
+    path: "estrogen",
+    text: "🍫 What's your appetite like?",
     options: [
       {
         letter: "A",
-        text: "Easily irritated or moody",
-        archetypes: ["queen", "chairwoman"]
+        text: "🍫 Crave sweets often",
+        archetypes: ["queen"]
       },
       {
         letter: "B",
-        text: "Anxious or tense most days",
-        archetypes: ["workaholic"]
+        text: "🍞 Comfort food feels necessary",
+        archetypes: ["mother"]
       },
       {
         letter: "C",
-        text: "Emotionally flat or unmotivated",
-        archetypes: ["nun", "underdog"]
+        text: "🥗 Trying to eat clean but feel inflamed",
+        archetypes: ["chairwoman"]
+      }
+    ]
+  },
+
+  // CORTISOL PATH
+  {
+    id: "cortisol_q1",
+    path: "cortisol",
+    text: "🔥 How do you feel under stress?",
+    options: [
+      {
+        letter: "A",
+        text: "🧨 Jumpy and anxious",
+        nextQuestion: "cortisol_q2",
+        archetypes: ["workaholic"]
       },
       {
-        letter: "D",
-        text: "Restless and overwhelmed",
-        archetypes: ["overachiever", "workaholic"]
+        letter: "B",
+        text: "🧃 Totally drained",
+        nextQuestion: "cortisol_q2",
+        archetypes: ["saboteur"]
       },
       {
-        letter: "E",
-        text: "Mostly calm and balanced",
-        archetypes: ["balanced"]
+        letter: "C",
+        text: "💼 Managing but running low",
+        nextQuestion: "cortisol_q2",
+        archetypes: ["chairwoman"]
+      }
+    ]
+  },
+  {
+    id: "cortisol_q2",
+    path: "cortisol",
+    text: "😬 How's your sleep?",
+    options: [
+      {
+        letter: "A",
+        text: "😬 Restless or wake up early",
+        nextQuestion: "cortisol_q3",
+        archetypes: ["workaholic"]
+      },
+      {
+        letter: "B",
+        text: "🛌 Still tired after sleep",
+        nextQuestion: "cortisol_q3",
+        archetypes: ["saboteur"]
+      },
+      {
+        letter: "C",
+        text: "📉 Sleep but feel robotic",
+        nextQuestion: "cortisol_q3",
+        archetypes: ["chairwoman"]
+      }
+    ]
+  },
+  {
+    id: "cortisol_q3",
+    path: "cortisol",
+    text: "🔥 Your stress style?",
+    options: [
+      {
+        letter: "A",
+        text: "🔥 Can't slow down",
+        archetypes: ["workaholic"]
+      },
+      {
+        letter: "B",
+        text: "🐢 Body shuts down",
+        archetypes: ["saboteur"]
+      },
+      {
+        letter: "C",
+        text: "🧯 Cool outside, chaos inside",
+        archetypes: ["chairwoman"]
+      }
+    ]
+  },
+
+  // THYROID PATH
+  {
+    id: "thyroid_q1",
+    path: "thyroid",
+    text: "🧠 How's your pace?",
+    options: [
+      {
+        letter: "A",
+        text: "🐢 Super slow",
+        nextQuestion: "thyroid_q2",
+        archetypes: ["underdog"]
+      },
+      {
+        letter: "B",
+        text: "⚡ Too fast",
+        nextQuestion: "thyroid_q2",
+        archetypes: ["overachiever"]
+      }
+    ]
+  },
+  {
+    id: "thyroid_q2",
+    path: "thyroid",
+    text: "🧠 How's your brain?",
+    options: [
+      {
+        letter: "A",
+        text: "😴 Foggy",
+        nextQuestion: "thyroid_q3",
+        archetypes: ["underdog"]
+      },
+      {
+        letter: "B",
+        text: "🤯 Spinning thoughts",
+        nextQuestion: "thyroid_q3",
+        archetypes: ["overachiever"]
+      }
+    ]
+  },
+  {
+    id: "thyroid_q3",
+    path: "thyroid",
+    text: "🚀 Energy pattern?",
+    options: [
+      {
+        letter: "A",
+        text: "🛌 Always tired",
+        archetypes: ["underdog"]
+      },
+      {
+        letter: "B",
+        text: "🚀 Can't sit still",
+        archetypes: ["overachiever"]
+      }
+    ]
+  },
+
+  // TESTOSTERONE PATH
+  {
+    id: "testosterone_q1",
+    path: "testosterone",
+    text: "🧪 How's your libido?",
+    options: [
+      {
+        letter: "A",
+        text: "🔥 High or intense",
+        nextQuestion: "testosterone_q2",
+        archetypes: ["warrior"]
+      },
+      {
+        letter: "B",
+        text: "🧊 Low or gone",
+        nextQuestion: "testosterone_q2",
+        archetypes: ["nun"]
+      },
+      {
+        letter: "C",
+        text: "😶 Disconnected",
+        nextQuestion: "testosterone_q2",
+        archetypes: ["philosopher"]
+      }
+    ]
+  },
+  {
+    id: "testosterone_q2",
+    path: "testosterone",
+    text: "⚔️ Motivation?",
+    options: [
+      {
+        letter: "A",
+        text: "⚔️ Driven and impatient",
+        nextQuestion: "testosterone_q3",
+        archetypes: ["warrior"]
+      },
+      {
+        letter: "B",
+        text: "🙏 I've lost my spark",
+        nextQuestion: "testosterone_q3",
+        archetypes: ["nun"]
+      },
+      {
+        letter: "C",
+        text: "🧘‍♂️ Calm and low-key",
+        nextQuestion: "testosterone_q3",
+        archetypes: ["philosopher"]
+      }
+    ]
+  },
+  {
+    id: "testosterone_q3",
+    path: "testosterone",
+    text: "💪 Body awareness?",
+    options: [
+      {
+        letter: "A",
+        text: "💪 Strong but aggressive",
+        archetypes: ["warrior"]
+      },
+      {
+        letter: "B",
+        text: "😞 Not in tune with my body",
+        archetypes: ["nun"]
+      },
+      {
+        letter: "C",
+        text: "🧠 In my head more than my body",
+        archetypes: ["philosopher"]
+      }
+    ]
+  },
+
+  // PROGESTERONE PATH
+  {
+    id: "progesterone_q1",
+    path: "progesterone",
+    text: "🧘 How's PMS?",
+    options: [
+      {
+        letter: "A",
+        text: "🎭 Emotional rollercoaster",
+        nextQuestion: "progesterone_q2",
+        archetypes: ["unbalanced-heroine"]
+      },
+      {
+        letter: "B",
+        text: "😵‍💫 Tired and sensitive",
+        nextQuestion: "progesterone_q2",
+        archetypes: ["mother"]
+      }
+    ]
+  },
+  {
+    id: "progesterone_q2",
+    path: "progesterone",
+    text: "😤 Stress mode?",
+    options: [
+      {
+        letter: "A",
+        text: "😤 Unravels me",
+        nextQuestion: "progesterone_q3",
+        archetypes: ["unbalanced-heroine"]
+      },
+      {
+        letter: "B",
+        text: "😮‍💨 Can't cope well",
+        nextQuestion: "progesterone_q3",
+        archetypes: ["mother"]
+      }
+    ]
+  },
+  {
+    id: "progesterone_q3",
+    path: "progesterone",
+    text: "🌙 Sleep?",
+    options: [
+      {
+        letter: "A",
+        text: "🌙 Can't stay asleep",
+        archetypes: ["unbalanced-heroine"]
+      },
+      {
+        letter: "B",
+        text: "😴 Tired even after rest",
+        archetypes: ["mother"]
       }
     ]
   }
 ];
 
-export const getQuestionById = (id: number): Question | undefined => {
-  return questions.find(question => question.id === id);
+export const getQuestionById = (id: string): Question | undefined => {
+  return questions.find(q => q.id === id);
+};
+
+export const getNextQuestion = (currentQuestionId: string, selectedOption: string): string | null => {
+  const question = getQuestionById(currentQuestionId);
+  if (!question) return null;
+  
+  const option = question.options.find(opt => opt.letter === selectedOption);
+  return option?.nextQuestion || null;
 }; 

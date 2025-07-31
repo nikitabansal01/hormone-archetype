@@ -55,3 +55,18 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #a5b4fc;
 }
+
+/* Custom animations for the home page */
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.hover\:shadow-3xl:hover {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+}
