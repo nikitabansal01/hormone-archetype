@@ -45,7 +45,6 @@ Each archetype comes with a personalized SHINES protocol covering:
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Font**: Inter (Google Fonts)
-- **Database**: Upstash Redis (for storing quiz data and emails)
 - **Deployment**: Ready for Vercel deployment
 
 ## Getting Started
@@ -68,16 +67,12 @@ cd hormone-archetype-quiz
 npm install
 ```
 
-3. Set up environment variables:
-   - Create a `.env.local` file in the root directory
-   - Add your Upstash Redis credentials (see `UPSTASH_SETUP.md` for details)
-
-4. Run the development server:
+3. Run the development server:
 ```bash
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Building for Production
 
@@ -98,11 +93,8 @@ src/
 │   │   └── page.tsx         # Quiz interface
 │   ├── result/
 │   │   └── page.tsx         # Results page
-│   ├── protocol/
-│   │   └── page.tsx         # Protocol page
-│   └── api/
-│       └── store-quiz-data/
-│           └── route.ts     # API for storing quiz data
+│   └── protocol/
+│       └── page.tsx         # Protocol page
 ├── data/
 │   ├── archetypes.ts        # Archetype definitions
 │   └── questions.ts         # Quiz questions
@@ -120,16 +112,7 @@ The quiz uses a sophisticated scoring system:
 4. Tie-breaking uses archetype priority hierarchy
 5. Results are calculated in real-time
 
-## Data Storage
 
-The application stores quiz data and user emails in Upstash Redis:
-
-- **Quiz Responses**: Complete quiz answers and results
-- **User Emails**: Email addresses for follow-up communications
-- **Archetype Results**: Calculated hormone archetype and confidence levels
-- **Opt-in Status**: Whether users want to receive updates
-
-For detailed setup instructions, see `UPSTASH_SETUP.md`.
 
 ## Customization
 
