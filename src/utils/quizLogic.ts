@@ -1,4 +1,4 @@
-import { questions, getQuestionById } from '@/data/questions';
+import { getQuestionById } from '@/data/questions';
 
 export interface QuizAnswer {
   questionId: string;

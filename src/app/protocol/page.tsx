@@ -202,7 +202,7 @@ function ProtocolContent() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Protocol Not Found</h1>
-          <p className="text-gray-600 mb-6">We couldn't find your hormone protocol.</p>
+          <p className="text-gray-600 mb-6">We couldn&apos;t find your hormone protocol.</p>
           <Link
             href="/quiz"
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-400 to-purple-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
@@ -248,7 +248,7 @@ function ProtocolContent() {
                 <div>
                   <h3 className="text-green-800 font-semibold mb-2">Welcome to the community!</h3>
                   <p className="text-green-700 text-sm leading-relaxed">
-                    You're now signed up to receive personalized hormone optimization tips, meal plans, and expert guidance. Check your email for your welcome gift!
+                    You&apos;re now signed up to receive personalized hormone optimization tips, meal plans, and expert guidance. Check your email for your welcome gift!
                   </p>
                 </div>
               </div>
@@ -278,7 +278,7 @@ function ProtocolContent() {
                 Your SHINES Protocol 🌟
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Here's your personalized 6-step action plan to restore hormone balance and optimize your health. Start with one step at a time — small changes create big results!
+                Here&apos;s your personalized 6-step action plan to restore hormone balance and optimize your health. Start with one step at a time — small changes create big results!
               </p>
             </div>
 
@@ -323,7 +323,7 @@ function ProtocolContent() {
           <div className="bg-white rounded-3xl shadow-xl p-8 mb-8 border border-white/50">
             <div className="text-center">
               <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                🚀 What's Next?
+                🚀 What&apos;s Next?
               </h3>
               <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <div className="text-center">

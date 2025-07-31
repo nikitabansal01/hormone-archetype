@@ -3,9 +3,9 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { QuizAnswer, getDominantArchetype, getQuizResult, QuizResult } from '@/utils/quizLogic';
+import { QuizAnswer, getQuizResult, QuizResult } from '@/utils/quizLogic';
 import { Archetype, archetypes } from '@/data/archetypes';
-import { questions, getQuestionById } from '@/data/questions';
+import { getQuestionById } from '@/data/questions';
 
 // Archetype explanations with playful nicknames
 const archetypeExplanations: { [key: string]: { nickname: string; emoji: string; explanation: string } } = {
@@ -122,10 +122,28 @@ function ResultContent() {
 
     setIsSubmitting(true);
     
-    // Simulate email signup (replace with your actual email service)
     try {
-      // Here you would integrate with your email service (Mailchimp, ConvertKit, etc.)
-      console.log('Signing up:', { email, archetype: archetype.id });
+      // Store quiz data to Upstash
+      const response = await fetch('/api/store-quiz-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          archetype: archetype.id,
+          answers,
+          keepInLoop,
+          quizResult
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to store quiz data');
+      }
+
+      const result = await response.json();
+      console.log('Quiz data stored:', result);
       
       // Redirect to protocol page with email, archetype, and checkbox state
       const protocolParams = new URLSearchParams({
@@ -182,7 +200,7 @@ function ResultContent() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Results Not Found</h1>
-          <p className="text-gray-600 mb-6">We couldn't find your hormone archetype results.</p>
+          <p className="text-gray-600 mb-6">We couldn&apos;t find your hormone archetype results.</p>
           <Link
             href="/quiz"
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-400 to-purple-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
@@ -216,7 +234,7 @@ function ResultContent() {
               Your Hormone Personality Archetype
             </h1>
             <p className="text-lg text-gray-600">
-              Discover what your body's been trying to tell you
+              Discover what your body&apos;s been trying to tell you
             </p>
           </div>
 
@@ -226,7 +244,7 @@ function ResultContent() {
               <span className="text-2xl mr-3">💡</span>
               <div>
                 <p className="text-blue-800 text-sm leading-relaxed">
-                  This quiz is designed to reflect the most dominant hormone pattern in your body based on clinical archetypes. Your answers matched: <strong>{archetypeInfo.nickname} {archetypeInfo.emoji}</strong>. If you'd like deeper insights, try our full hormone journal or lab quiz.
+                  This quiz is designed to reflect the most dominant hormone pattern in your body based on clinical archetypes. Your answers matched: <strong>{archetypeInfo.nickname} {archetypeInfo.emoji}</strong>. If you&apos;d like deeper insights, try our full hormone journal or lab quiz.
                 </p>
               </div>
             </div>
@@ -302,7 +320,7 @@ function ResultContent() {
             {/* Email Sign-up Form */}
             <div className="text-center">
               <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                🚪 What's Next
+                🚪 What&apos;s Next
               </h3>
                               <p className="text-gray-600 mb-6">
                   Get your complete personalized SHINES protocol with detailed recommendations, meal plans, and supplement guidance.
