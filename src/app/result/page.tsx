@@ -123,14 +123,27 @@ function ResultContent() {
     setIsSubmitting(true);
     
     try {
-      // Log the signup data (replace with your email service integration)
-      console.log('Signing up:', { 
-        email, 
-        archetype: archetype.id, 
-        keepInLoop,
-        answers,
-        quizResult 
+      // Store quiz data to Supabase
+      const response = await fetch('/api/store-quiz-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          archetype: archetype.id,
+          answers,
+          keepInLoop,
+          quizResult
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error('Failed to store quiz data');
+      }
+
+      const result = await response.json();
+      console.log('Quiz data stored in Supabase:', result);
       
       // Redirect to protocol page with email, archetype, and checkbox state
       const protocolParams = new URLSearchParams({
