@@ -3,6 +3,7 @@
 A full-stack web application built with Next.js, TypeScript, and Tailwind CSS that helps users discover their hormone archetype through a comprehensive 9-question quiz.
 
 **🔄 Last Updated**: December 2024 - Triggering Vercel deployment
+**🌐 Repository Status**: Now Public - Vercel should detect changes
 
 ## Features
 
