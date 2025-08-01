@@ -108,10 +108,6 @@ export default function QuizPage() {
                 <span className="text-xs text-gray-600 font-medium">Private</span>
               </div>
             </div>
-            
-            <div className="text-sm text-gray-500">
-              {question.path ? `${question.path.charAt(0).toUpperCase() + question.path.slice(1)} Path` : 'Getting Started'}
-            </div>
           </div>
 
           {/* Progress Bar */}
